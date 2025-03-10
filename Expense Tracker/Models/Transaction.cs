@@ -34,7 +34,28 @@ namespace Expense_Tracker.Models
         {
             get
             {
-                return ((Category == null || Category.Type == "Expense") ? "- " : "+ ") + Amount.ToString();
+
+
+                if (Category == null || Category.Type == "Expense")
+                {
+                    if (Amount < 0)
+                    {
+                        return "+ " + (Amount * -1).ToString();
+                    }
+                    else
+                    {
+                        return "- " + Amount.ToString();
+                    }
+                }
+                else if (Category.Type == "Income")
+                {
+                    return "+ " + Amount.ToString();
+                }
+                else
+                {
+                    return "Unknown";
+                }
+
             }
         }
 
